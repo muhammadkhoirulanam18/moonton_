@@ -25,6 +25,10 @@ Route::get('/', function () {
     ]);
 });
 
+Route::middleware(['auth', 'role:admin'])->get('/admin-only', function () {
+    return Inertia::render('Dashboard'); // atau halaman lain
+})->name('admin.only');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
